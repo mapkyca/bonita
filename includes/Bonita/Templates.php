@@ -169,7 +169,7 @@
 					if ($echo) {
 					    
 						// End session BEFORE we output any data
-						session_write_close();
+						// session_write_close(); // Seems to cause some issues with Known, so commenting out for now
 
 						// Break long output to avoid a apache performance bug							
 						$split_output = str_split($this->draw('shell'), 1024);
