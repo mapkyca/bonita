@@ -26,9 +26,10 @@
 		 		
 		 		public function draw($templateName, $returnBlank = true) {
 		 		
+                    $time = time();
 		 			$this->token = sha1($this->targetURL . $time . \Bonita\Main::getSiteSecret());
-		 			$this->time = time();
-		 			$parent::draw($templateName, $returnBlank);
+		 			$this->time = $time;
+		 			parent::draw($templateName, $returnBlank);
 		 		
 		 		}
 		 		
