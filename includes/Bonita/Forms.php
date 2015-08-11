@@ -43,13 +43,17 @@
 			 */
 		 		public static function validateToken($action = '', $haltExecutionOnBadRequest = true) {
 		 		
-					if (empty($_REQUEST['__bTs']) || empty($_REQUEST['__bTk'])) return false;
+					if (empty($_REQUEST['__bTs']) || empty($_REQUEST['__bTk'])) {
+					    if ($haltExecutionOnBadRequest) exit;
+					    return false;
+					}
 		 			$time = 	$_REQUEST['__bTs'];
 		 			$token = 	$_REQUEST['__bTk'];
 		 			if (empty($action)) {
 					    if (!empty($_REQUEST['__bTa'])) {
 		 				$action = $_REQUEST['__bTa'];
 					    } else {
+						if ($haltExecutionOnBadRequest) exit;
 						return false;
 					    }
 					}
