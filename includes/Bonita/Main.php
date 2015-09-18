@@ -74,7 +74,13 @@
 				 */
 
 					public static function siteSecret($secret) {
+					    if (strlen($secret) >= 32) {
 						self::$secret = $secret;
+						
+						return true;
+					    }
+					    
+					    return false;
 					}
 
 				/**
