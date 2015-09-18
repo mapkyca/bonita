@@ -92,7 +92,8 @@
 		 	 *	@return true|false
 		 	 */
 		 		public static function token($action, $time) {
-				    if (!empty($action) && !empty($time) && !empty(\Bonita\Main::getSiteSecret())) {
+				    $secret = \Bonita\Main::getSiteSecret();
+				    if (!empty($action) && !empty($time) && !empty($secret)) {
 		 			return sha1($action . $time . \Bonita\Main::getSiteSecret());
 				    }
 				    
