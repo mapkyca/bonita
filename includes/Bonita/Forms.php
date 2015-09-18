@@ -27,7 +27,7 @@
 		 		public function draw($templateName, $returnBlank = true) {
 		 		
                     $time = time();
-		 			$this->token = sha1($this->targetURL . $time . \Bonita\Main::getSiteSecret());
+		 			$this->token = self::token($this->targetURL, $time);
 		 			$this->time = $time;
 		 			parent::draw($templateName, $returnBlank);
 		 		
