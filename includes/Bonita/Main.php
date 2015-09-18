@@ -70,7 +70,8 @@
 					}
 
 				/**
-				 * Sets the site secret
+				 * Sets the site secret.
+				 * This is used as a salt when generating a token, it is recommended you generate this from a good source of randomness.
 				 */
 
 					public static function siteSecret($secret) {
@@ -90,6 +91,22 @@
 
 					public static function getSiteSecret() {
 						return self::$secret;
+					}
+					
+				/**
+				 * Generate a random site secret suitable for use with siteSecret.
+				 * @param int $length Length of random characters in bytes (e.g. 16 will produce a 32 character hex value)
+				 * @return random bytes|false on error
+				 */
+					public static function generateSiteSecret($length = 32) {
+					    $strength = true;
+					    $bytes    = openssl_random_pseudo_bytes($length, $strength);
+					    
+					    if ($strength) {
+						return bin2hex($bytes);
+					    }
+					    
+					    return false;
 					}
 
 				/**
